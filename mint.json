@@ -2,29 +2,17 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "BunShip Documentation",
   "logo": {
-    "dark": "/logo/dark.png",
-    "light": "/logo/light.png"
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#38bdf8",
-    "light": "#7dd3fc",
-    "dark": "#0ea5e9",
-    "background": {
-      "dark": "#131314"
-    },
+    "primary": "#5046E5",
+    "light": "#818CF8",
+    "dark": "#4338CA",
     "anchors": {
-      "from": "#38bdf8",
-      "to": "#7dd3fc"
-    }
-  },
-  "font": {
-    "headings": {
-      "family": "Lexend Deca",
-      "weight": 600
-    },
-    "body": {
-      "family": "Open Sans"
+      "from": "#5046E5",
+      "to": "#818CF8"
     }
   },
   "topbarLinks": [
@@ -34,8 +22,8 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Download Free",
-    "url": "https://github.com/mayhemds/bunship"
+    "name": "Get Started",
+    "url": "https://bunship.com"
   },
   "tabs": [
     {
