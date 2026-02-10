@@ -35,7 +35,7 @@
   ],
   "topbarCtaButton": {
     "name": "Download Free",
-    "url": "https://github.com/mayhemds/bunnyboiler"
+    "url": "https://github.com/mayhemds/bunship"
   },
   "tabs": [
     {
@@ -47,7 +47,7 @@
     {
       "name": "GitHub",
       "icon": "github",
-      "url": "https://github.com/mayhemds/bunnyboiler"
+      "url": "https://github.com/mayhemds/bunship"
     },
     {
       "name": "Website",
@@ -185,7 +185,7 @@
   ],
   "footerSocials": {
     "x": "https://x.com/bunshipdev",
-    "github": "https://github.com/mayhemds/bunnyboiler"
+    "github": "https://github.com/mayhemds/bunship"
   },
   "api": {
     "baseUrl": "https://api.bunship.com",
