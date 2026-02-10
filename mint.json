@@ -29,6 +29,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Pro",
+      "url": "pro"
     }
   ],
   "anchors": [
@@ -168,6 +172,17 @@
         "api-reference/api-keys/list",
         "api-reference/api-keys/create",
         "api-reference/api-keys/revoke"
+      ]
+    },
+    {
+      "group": "Pro",
+      "pages": [
+        "pro/overview",
+        "pro/quickstart",
+        "pro/theming",
+        "pro/adding-pages",
+        "pro/deployment",
+        "pro/faq"
       ]
     }
   ],
