@@ -179,6 +179,12 @@
       "pages": [
         "pro/overview",
         "pro/quickstart",
+        "pro/frontend-overview",
+        "pro/components",
+        "pro/styling",
+        "pro/eden-client",
+        "pro/adding-features",
+        "pro/environment-variables",
         "pro/theming",
         "pro/adding-pages",
         "pro/deployment",
