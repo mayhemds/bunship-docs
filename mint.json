@@ -176,9 +176,7 @@
     },
     {
       "group": "Pro",
-      "pages": [
-        "pro/overview"
-      ]
+      "pages": ["pro/overview"]
     }
   ],
   "footerSocials": {
