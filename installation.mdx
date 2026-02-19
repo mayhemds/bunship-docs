@@ -68,7 +68,8 @@ description: "Detailed installation and configuration guide"
     bun install
     ```
 
-    This installs all workspace packages:
+    This installs all workspace packages and automatically creates a `.env` file from
+    `.env.example` with working defaults for local development:
 
     | Package | Path | Description |
     |---------|------|-------------|
@@ -79,14 +80,10 @@ description: "Detailed installation and configuration guide"
     | `@bunship/eden` | `packages/eden` | Type-safe API client |
     | `@bunship/utils` | `packages/utils` | Shared utilities |
 
-  </Step>
-
-  <Step title="Create your environment file">
-    ```bash
-    cp .env.example .env
-    ```
-
-    The sections below walk through every variable in this file.
+    <Note>
+      If `.env` already exists, it will not be overwritten. To start fresh, delete it and run
+      `bun install` again.
+    </Note>
 
   </Step>
 </Steps>
@@ -112,24 +109,62 @@ FRONTEND_URL=http://localhost:5173
 
 ### JWT Authentication
 
-BunShip uses a dual-token JWT strategy: short-lived access tokens and long-lived refresh
-tokens. Each needs its own signing secret.
+BunShip uses a dual-token JWT strategy: short-lived **access tokens** (default 15 minutes)
+and long-lived **refresh tokens** (default 7 days). Each token type is signed with its own
+secret so that compromising one does not compromise the other.
 
 ```bash
-JWT_SECRET=<access-token-secret>
-JWT_REFRESH_SECRET=<refresh-token-secret>
+JWT_SECRET=<access-token-signing-secret>
+JWT_REFRESH_SECRET=<refresh-token-signing-secret>
 ```
 
-Generate secure random values:
+The auto-generated `.env` includes placeholder secrets that work for local development.
+Before deploying, replace them with cryptographically random values.
+
+#### How to generate a JWT secret
+
+Pick whichever tool you have available — the result is the same: a long, random string.
+
+<Tabs>
+  <Tab title="openssl (recommended)">
+    Available on macOS and most Linux distributions out of the box.
+
+    ```bash
+    openssl rand -base64 48
+    ```
+
+    Run it twice — once for `JWT_SECRET`, once for `JWT_REFRESH_SECRET`.
+  </Tab>
+  <Tab title="Bun">
+    ```bash
+    bun -e "console.log(crypto.randomUUID() + crypto.randomUUID())"
+    ```
+  </Tab>
+  <Tab title="Node.js">
+    ```bash
+    node -e "console.log(require('crypto').randomBytes(48).toString('base64'))"
+    ```
+  </Tab>
+</Tabs>
+
+Paste the output into your `.env`:
 
 ```bash
-bun -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+JWT_SECRET=aB3dE6gH9jK2mN5pQ8rS1uV4wX7yZ0bC3fG6hJ9kL2n
+JWT_REFRESH_SECRET=xY7zW4vU1tS8rQ5pO2nM9lK6jH3gF0eD7cB4aZ1xW8v
 ```
 
 <Warning>
-  Use different values for `JWT_SECRET` and `JWT_REFRESH_SECRET`. Both must be at least 32
-  characters. Never commit these to version control.
+  **Use different values** for `JWT_SECRET` and `JWT_REFRESH_SECRET`. Both must be at least
+  32 characters. Never commit real secrets to version control — `.env` is already in
+  `.gitignore`.
 </Warning>
+
+<Accordion title="What happens if I skip this?">
+  The placeholder secrets in `.env.example` work fine for local development. But if you
+  deploy with the default values, anyone who reads the source code can forge authentication
+  tokens for your API. Always generate unique secrets before deploying.
+</Accordion>
 
 ## Database Setup
 

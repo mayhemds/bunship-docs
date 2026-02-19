@@ -41,31 +41,47 @@ You will also need accounts for these services (free tiers available):
     bun install
     ```
 
+    This also creates a `.env` file from `.env.example` with working defaults for local development.
+
   </Step>
 
-  <Step title="Configure environment variables">
-    Copy the example environment file and generate JWT secrets:
+  <Step title="Generate JWT secrets (recommended)">
+    The auto-generated `.env` includes placeholder secrets that work for development, but you
+    should replace them with random values — especially before deploying anywhere.
+
+    Generate two separate secrets and paste them into your `.env`:
+
+    <Tabs>
+      <Tab title="openssl">
+        ```bash
+        # Generate JWT_SECRET
+        openssl rand -base64 48
+
+        # Generate JWT_REFRESH_SECRET (run the same command again for a different value)
+        openssl rand -base64 48
+        ```
+      </Tab>
+      <Tab title="Bun">
+        ```bash
+        bun -e "console.log(crypto.randomUUID() + crypto.randomUUID())"
+        ```
+      </Tab>
+    </Tabs>
+
+    Open `.env` and replace the placeholder values:
 
     ```bash
-    cp .env.example .env
+    JWT_SECRET=<paste-first-secret-here>
+    JWT_REFRESH_SECRET=<paste-second-secret-here>
     ```
 
-    Open `.env` and set at minimum these two values to secure random strings:
+    <Warning>
+      Use **different** values for each secret. Both must be at least 32 characters.
+      Never commit your `.env` file to version control.
+    </Warning>
 
-    ```bash
-    JWT_SECRET=<generate-a-32-char-random-string>
-    JWT_REFRESH_SECRET=<generate-a-different-32-char-random-string>
-    ```
-
-    Generate a secret with:
-
-    ```bash
-    bun -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
-    ```
-
-    The remaining defaults (local SQLite database, localhost Redis) work out of the box for
-    development. See the [Installation guide](/installation) for a full breakdown of every
-    environment variable.
+    See the [Installation guide](/installation#jwt-authentication) for a full breakdown of
+    every environment variable.
 
   </Step>
 
