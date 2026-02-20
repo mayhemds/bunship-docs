@@ -134,6 +134,7 @@ Pick whichever tool you have available — the result is the same: a long, rando
     ```
 
     Run it twice — once for `JWT_SECRET`, once for `JWT_REFRESH_SECRET`.
+
   </Tab>
   <Tab title="Bun">
     ```bash
@@ -155,15 +156,14 @@ JWT_REFRESH_SECRET=xY7zW4vU1tS8rQ5pO2nM9lK6jH3gF0eD7cB4aZ1xW8v
 ```
 
 <Warning>
-  **Use different values** for `JWT_SECRET` and `JWT_REFRESH_SECRET`. Both must be at least
-  32 characters. Never commit real secrets to version control — `.env` is already in
-  `.gitignore`.
+  **Use different values** for `JWT_SECRET` and `JWT_REFRESH_SECRET`. Both must be at least 32
+  characters. Never commit real secrets to version control — `.env` is already in `.gitignore`.
 </Warning>
 
 <Accordion title="What happens if I skip this?">
-  The placeholder secrets in `.env.example` work fine for local development. But if you
-  deploy with the default values, anyone who reads the source code can forge authentication
-  tokens for your API. Always generate unique secrets before deploying.
+  The placeholder secrets in `.env.example` work fine for local development. But if you deploy with
+  the default values, anyone who reads the source code can forge authentication tokens for your API.
+  Always generate unique secrets before deploying.
 </Accordion>
 
 ## Database Setup
